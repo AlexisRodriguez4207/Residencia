@@ -18,7 +18,3 @@ samples, guidance on mobile development, and a full API reference.
 //Nombre App
 
 dart run change_app_package_name:main com.residencia.dev
-
-Platform Firebase App Id
-android 1:371794887708:android:afe426f58df073f8174bd9
-windows 1:371794887708:web:f48ac0648197948d174bd9
