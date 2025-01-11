@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "371794887708",
+    "project_id": "flutter-todolist-e9f87",
+    "storage_bucket": "flutter-todolist-e9f87.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371794887708:android:eb07a6adb247a5d4174bd9",
+        "android_client_info": {
+          "package_name": "com.equipo.residencia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6EcL10_yF-ZW50pE6EjhasQSMmCWoCgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371794887708:android:afe426f58df073f8174bd9",
+        "android_client_info": {
+          "package_name": "com.residencia.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6EcL10_yF-ZW50pE6EjhasQSMmCWoCgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
