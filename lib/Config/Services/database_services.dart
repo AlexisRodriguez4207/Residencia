@@ -40,6 +40,7 @@ class DatabaseServices {
     // Esto serviría para mostrar todas las notas del usuario
     return notesCollection
         .where('uidcreador', isEqualTo: auth.currentUser!.uid)
+        .orderBy('date', descending: true)
         .snapshots();
 
     // Esto serviriá para limitar la cantidad de notas que se muestran
@@ -47,5 +48,19 @@ class DatabaseServices {
 
     // Esto serviría para ordenar las notas por fecha
     //return notesCollection.orderBy('date', descending: true).snapshots();
+  }
+
+  deleteNote(
+    String id,
+  ) {
+    // Eliminar nota
+    notesCollection.doc(id).delete();
+  }
+
+  updateNote(String id, String text) {
+    // Actualizar nota
+    notesCollection
+        .doc(id)
+        .set({'text': text, 'date': Timestamp.now()}, SetOptions(merge: true));
   }
 }

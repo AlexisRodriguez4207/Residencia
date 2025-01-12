@@ -11,6 +11,7 @@ class CustomFormTextField extends StatelessWidget {
     // this.icon,
     this.obscureText,
     this.validator,
+    this.initialValue,
   });
 
   final String nombre;
@@ -19,6 +20,7 @@ class CustomFormTextField extends StatelessWidget {
   // final IconData? icon;
   final bool? obscureText;
   final String? Function(String?)? validator;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,8 @@ class CustomFormTextField extends StatelessWidget {
         // valida mientras el usuario interactua con el campo
         autovalidateMode: AutovalidateMode.onUserInteraction,
         name: nombre,
+        // Si viene vacio el valor inicial se pone un string vacio
+        initialValue: initialValue ?? '',
         style: TextStyle(color: Colors.black),
         //Validar Forms
         validator: validator,

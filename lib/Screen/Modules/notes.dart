@@ -60,26 +60,41 @@ class _NotesState extends State<Notes> {
                     itemCount: notes.length,
                     itemBuilder: (context, index) {
                       return Container(
+                        padding: EdgeInsets.all(10.sp),
+                        margin: EdgeInsets.only(bottom: 2.h),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.pinkAccent,
                         ),
-                        height: 6.h,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(
-                              notes[index]['text'],
-                              style: TextStyle(color: Colors.white),
+                            SizedBox(
+                              width: 40.w,
+                              child: Text(
+                                // $notes[index]['text'],
+                                '${notes[index]['text'] + ' - ' + notes[index]['date'].toDate().toString().substring(0, 16)}',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                             SizedBox(
                               child: Row(
                                 children: [
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        // Editar Nota
+                                        showDialogUpdate(
+                                            context,
+                                            notes[index]['text'],
+                                            notes[index].id);
+                                      },
                                       icon: const Icon(Icons.edit)),
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        // Eliminar Nota
+                                        DatabaseServices()
+                                            .deleteNote(notes[index].id);
+                                      },
                                       icon: const Icon(Icons.delete_outline)),
                                 ],
                               ),
@@ -128,6 +143,53 @@ class _NotesState extends State<Notes> {
                 if (_formKey.currentState?.validate() == true) {
                   final nota = _formKey.currentState!.value;
                   await DatabaseServices().addNote(nota['notas']);
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    _formKey.currentState?.reset();
+                  }
+                }
+              },
+              child: const Text('Guardar'),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  // Editar Notas
+  Future<dynamic> showDialogUpdate(
+      BuildContext context, String initialValue, String uidNota) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: FormBuilder(
+            key: _formKey,
+            child: CustomFormTextField(
+                initialValue: initialValue,
+                nombre: 'notas',
+                hint: 'Ingresa un texto',
+                label: 'Notas',
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.minLength(1),
+                ])),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                //Cerrar dialog
+                Navigator.pop(context);
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () async {
+                //Guardar Notas
+                _formKey.currentState?.save();
+                if (_formKey.currentState?.validate() == true) {
+                  final nota = _formKey.currentState!.value;
+                  await DatabaseServices().updateNote(uidNota, nota['notas']);
                   if (context.mounted) {
                     Navigator.pop(context);
                     _formKey.currentState?.reset();
