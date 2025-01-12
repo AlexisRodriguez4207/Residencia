@@ -13,6 +13,7 @@ class UserPreferences {
     return _prefs.getString('lastpage') ?? '/dashboard';
   }
 
+  // Esto es para guardar la ultima pagina visitada
   set lastpage(String value) {
     _prefs.setString('lastpage', value);
   }
@@ -22,8 +23,16 @@ class UserPreferences {
     return _prefs.getString('uid') ?? '';
   }
 
-  // Esto es para guardar la ultima pagina visitada
   set uid(String value) {
     _prefs.setString('uid', value);
+  }
+
+  bool get theme {
+    // Esto es para retornar el uid del usuario
+    return _prefs.getBool('theme') ?? true;
+  }
+
+  set theme(bool value) {
+    _prefs.setBool('theme', value);
   }
 }

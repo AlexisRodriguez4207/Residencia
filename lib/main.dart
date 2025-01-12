@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:residencia_v2/Config/Preferences/shared_preferences.dart';
 import 'package:residencia_v2/Config/Routes/routes.dart';
+import 'package:residencia_v2/Config/Services/theme_provider.dart';
 import 'package:residencia_v2/firebase_options.dart';
 
 import 'package:sizer/sizer.dart';
@@ -13,7 +15,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,12 +33,12 @@ class MyApp extends StatelessWidget {
           title: 'Material App',
           navigatorObservers: [FlutterSmartDialog.observer],
           builder: FlutterSmartDialog.init(),
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            // useMaterial3: true,
-          ),
+          theme: Provider.of<ThemeProvider>(context).themeData,
+          // ThemeData(
+          //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          //   // useMaterial3: true,
+          // ),
           initialRoute: 'main',
-          // UserPreferences()
           routes: routes,
         );
       },

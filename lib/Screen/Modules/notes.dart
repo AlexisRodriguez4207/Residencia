@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:provider/provider.dart';
 import 'package:residencia_v2/Config/Preferences/shared_preferences.dart';
 import 'package:residencia_v2/Config/Services/database_services.dart';
+import 'package:residencia_v2/Config/Services/theme_provider.dart';
+import 'package:residencia_v2/Config/Theme/theme.dart';
 import 'package:residencia_v2/Screen/Custom/custom_form_text_field.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,15 +22,24 @@ class _NotesState extends State<Notes> {
 
   @override
   Widget build(BuildContext context) {
-    prefs.lastpage = '/dashboard';
+    final provider =
+        Provider.of<ThemeProvider>(context, listen: true).themeData;
+
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton:
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
         FloatingActionButton(
           heroTag: 'floating1',
-          onPressed: () {},
-          child: const Icon(Icons.sunny),
+          onPressed: () {
+            // Cambiar Tema
+            Provider.of<ThemeProvider>(context, listen: false).switchTheme();
+          },
+          child: Icon(
+              provider == lightTheme ? Icons.sunny : Icons.mode_night_rounded),
         ),
         SizedBox(height: 2.h),
         FloatingActionButton(
@@ -36,12 +48,15 @@ class _NotesState extends State<Notes> {
             // Agregar Notas
             showdialogadd(context);
           },
-          child: const Icon(Icons.add),
+          child: Icon(Icons.add),
         )
       ]),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Notas'),
+        title: Text(
+          'Notas',
+          style: texts.titleLarge,
+        ),
       ),
       body: SafeArea(
         child: Center(
