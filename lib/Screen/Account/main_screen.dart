@@ -9,6 +9,10 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -25,7 +29,8 @@ class MainScreen extends StatelessWidget {
                   width: size.width * 0.6,
                   child: Text(
                     'MindTech',
-                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                    style: texts.titleLarge,
+                    // style: TextStyle(color: Colors.white, fontSize: 20.sp),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -36,7 +41,9 @@ class MainScreen extends StatelessWidget {
                   width: size.width * 0.6,
                   child: Text(
                     'Aplicación de desarrollo de Residencia',
-                    style: TextStyle(color: Colors.white, fontSize: 15.sp),
+                    style: texts.bodyMedium,
+
+                    // style: TextStyle(color: Colors.white, fontSize: 15.sp),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -48,15 +55,18 @@ class MainScreen extends StatelessWidget {
                   width: size.width * 0.3,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
-                    child: Text('Iniciar Sesión')),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  child: Text('Iniciar Sesión',
+                      style: TextStyle(color: colors.primary)),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/register');
                   },
-                  child: Text('Registrarse'),
+                  child: Text('Registrarse',
+                      style: TextStyle(color: colors.primary)),
                   style: ButtonStyle(
                     //  Mismo tamaño para todos los botones
                     padding: WidgetStateProperty.all(
@@ -89,12 +99,6 @@ class _ImageBoxSuperior extends StatelessWidget {
       child: SizedBox(
         height: size.height * 0.35,
         width: size.width * 0.8,
-        // Revisar este apartado porque no cargan las imagenes
-        // child: UnDraw(
-        //     illustration: UnDrawIllustration.reminders,
-        //     placeholder: Text('Cargando...'),
-        //     errorWidget: Icon(Icons.error),
-        //     color: const Color(0xff1a1e3e)),
       ),
     );
   }

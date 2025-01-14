@@ -17,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -27,10 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     'Iniciar Sesión',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold),
+                    style: texts.titleMedium,
                   ),
                   CustomFormTextField(
                     nombre: 'email',
@@ -78,23 +77,29 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           }
                         },
-                        child: Text('Iniciar Sesión')),
+                        child: Text(
+                          'Iniciar Sesión',
+                          style: TextStyle(color: colors.primary),
+                        )),
                   ),
                   SizedBox(
                     height: 2.h,
                   ),
                   Text(
                     'No tienes cuenta?',
-                    style:
-                        TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: colors.primary),
+                    // style:
+                    //     TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     child: ElevatedButton(
-                        onPressed: () {
-                          //Registro de usuario
-                          Navigator.pushReplacementNamed(context, '/register');
-                        },
-                        child: const Text('Registrarse')),
+                      onPressed: () {
+                        //Registro de usuario
+                        Navigator.pushReplacementNamed(context, '/register');
+                      },
+                      child: Text('Registrarse',
+                          style: TextStyle(color: colors.primary)),
+                    ),
                   )
                 ],
               ),

@@ -13,6 +13,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -32,14 +34,33 @@ class _DashboardState extends State<Dashboard> {
       body: Center(
         child: Column(
           children: [
-            Text('Bienvenido a la pantalla de Dashboard'),
+            Text(
+              'Bienvenido a la pantalla de Dashboard',
+              style: TextStyle(color: colors.primary),
+            ),
             SizedBox(
-              child: ElevatedButton(
-                  onPressed: () {
-                    //Registro de usuario
-                    Navigator.pushReplacementNamed(context, '/notes');
-                  },
-                  child: const Text('Notas')),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        //Registro de usuario
+                        Navigator.pushReplacementNamed(context, '/notes');
+                      },
+                      child: const Text('Notas')),
+                  ElevatedButton(
+                      onPressed: () {
+                        //Registro de usuario
+                        Navigator.pushReplacementNamed(context, '/maps');
+                      },
+                      child: const Text('Ubicación')),
+                  ElevatedButton(
+                      onPressed: () {
+                        //Registro de usuario
+                        Navigator.pushReplacementNamed(context, '/games');
+                      },
+                      child: const Text('Juegos'))
+                ],
+              ),
             )
           ],
         ),

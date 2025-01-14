@@ -24,6 +24,9 @@ class CustomFormTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.5.h),
       child: FormBuilderTextField(
@@ -32,7 +35,7 @@ class CustomFormTextField extends StatelessWidget {
         name: nombre,
         // Si viene vacio el valor inicial se pone un string vacio
         initialValue: initialValue ?? '',
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: colors.primary),
         //Validar Forms
         validator: validator,
         obscureText: obscureText ?? false,
@@ -53,10 +56,10 @@ class CustomFormTextField extends StatelessWidget {
 
           label: Text(label),
           labelStyle: TextStyle(
-              color: Colors.black,
+              // color: Colors.black,
               fontSize: 15.sp,
               fontWeight: FontWeight.bold),
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: colors.primary),
           // suffix: Icon(icon),
 
           focusedBorder: OutlineInputBorder(

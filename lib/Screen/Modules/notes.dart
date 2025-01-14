@@ -29,6 +29,9 @@ class _NotesState extends State<Notes> {
     var texts = Theme.of(context).textTheme;
 
     return Scaffold(
+      //Cambiar color de fondo
+      // Revisar que colores aplican
+      backgroundColor: colors.surface,
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton:
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -52,10 +55,11 @@ class _NotesState extends State<Notes> {
         )
       ]),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           'Notas',
-          style: texts.titleLarge,
+          style: texts.titleMedium,
         ),
       ),
       body: SafeArea(
@@ -129,27 +133,46 @@ class _NotesState extends State<Notes> {
   }
 
   Future<dynamic> showdialogadd(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           content: FormBuilder(
-            key: _formKey,
-            child: CustomFormTextField(
-                nombre: 'notas',
-                hint: 'Ingresa un texto',
-                label: 'Notas',
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.minLength(1),
-                ])),
-          ),
+              key: _formKey,
+              child: Container(
+                height: 40.h,
+                child: Column(
+                  children: [
+                    CustomFormTextField(
+                        nombre: 'titulo',
+                        hint: 'Ingresa un Titulo',
+                        label: 'Titulo',
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(1),
+                        ])),
+                    CustomFormTextField(
+                        nombre: 'notas',
+                        hint: 'Ingresa un texto',
+                        label: 'Notas',
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.minLength(1),
+                        ])),
+                  ],
+                ),
+              )),
           actions: [
             TextButton(
               onPressed: () {
                 //Cerrar dialog
                 Navigator.pop(context);
               },
-              child: Text('Cancelar'),
+              child: Text(
+                'Cancelar',
+                style: TextStyle(color: colors.primary),
+              ),
             ),
             TextButton(
               onPressed: () async {
@@ -164,7 +187,7 @@ class _NotesState extends State<Notes> {
                   }
                 }
               },
-              child: const Text('Guardar'),
+              child: Text('Guardar', style: TextStyle(color: colors.primary)),
             )
           ],
         );
