@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ms_undraw/ms_undraw.dart';
-
 import 'package:sizer/sizer.dart';
 
 class MainScreen extends StatelessWidget {
