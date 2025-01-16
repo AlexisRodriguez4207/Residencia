@@ -269,9 +269,9 @@ class _MapScreenState extends State<MapScreen> {
 
               // urlTemplate: AppConstants.urlTemplate,
               // fallbackUrl: AppConstants.urlTemplate,
-              additionalOptions: const {
-                'id': AppConstants.mapBoxStyleOutdoorId,
-              },
+              // additionalOptions: const {
+              //   'id': AppConstants.mapBoxStyleOutdoorId,
+              // },
             ),
             MarkerLayer(markers: _markers),
             if (_isDragging && _draggedPosition != null)
