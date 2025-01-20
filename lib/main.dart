@@ -19,6 +19,10 @@ void main() async {
     create: (context) => ThemeProvider(),
     child: const MyApp(),
   ));
+  // child: const TheMemoryMatchGame(
+  // runApp(ProviderScope(
+  //   child: const MyApp(),
+  // ));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,11 +38,7 @@ class MyApp extends StatelessWidget {
           navigatorObservers: [FlutterSmartDialog.observer],
           builder: FlutterSmartDialog.init(),
           theme: Provider.of<ThemeProvider>(context).themeData,
-          // ThemeData(
-          //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          //   // useMaterial3: true,
-          // ),
-          initialRoute: 'main',
+          initialRoute: '/dashboard',
           routes: routes,
         );
       },

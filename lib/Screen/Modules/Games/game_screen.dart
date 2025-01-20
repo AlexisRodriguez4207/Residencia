@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({super.key});
+class GamesMenu extends StatefulWidget {
+  const GamesMenu({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<GamesMenu> createState() => _GamesMenuState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _GamesMenuState extends State<GamesMenu> {
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -19,7 +21,7 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text('Dashboard'),
+        title: const Text('Minijuegos'),
         actions: [
           IconButton(
             onPressed: () {
@@ -35,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           children: [
             Text(
-              'Bienvenido a la pantalla de Dashboard',
+              'Bienvenido a la pantalla de Minijuegos',
               style: TextStyle(color: colors.primary),
             ),
             SizedBox(
@@ -46,19 +48,19 @@ class _DashboardState extends State<Dashboard> {
                         //Registro de usuario
                         Navigator.pushReplacementNamed(context, '/notes');
                       },
-                      child: const Text('Notas')),
+                      child: const Text('Sudoku')),
                   ElevatedButton(
                       onPressed: () {
                         //Registro de usuario
-                        Navigator.pushReplacementNamed(context, '/maps');
+                        Navigator.pushReplacementNamed(context, '/memorama');
                       },
-                      child: const Text('Ubicación')),
+                      child: const Text('Memorama')),
                   ElevatedButton(
                       onPressed: () {
                         //Registro de usuario
-                        Navigator.pushReplacementNamed(context, '/gamesMenu');
+                        Navigator.pushReplacementNamed(context, '/');
                       },
-                      child: const Text('Juegos'))
+                      child: const Text('XD'))
                 ],
               ),
             )

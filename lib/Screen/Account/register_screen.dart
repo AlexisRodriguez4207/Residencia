@@ -52,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   //mounted = si la pantalla esta montada
                   if (context.mounted) {
-                    Navigator.pushReplacementNamed(context, 'dashboard');
+                    Navigator.pushReplacementNamed(context, '/dashboard');
                   }
                 } else {
                   SmartDialog.dismiss();

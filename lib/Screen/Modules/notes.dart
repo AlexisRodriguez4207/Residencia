@@ -52,6 +52,15 @@ class _NotesState extends State<Notes> {
             showdialogadd(context);
           },
           child: Icon(Icons.add),
+        ),
+        SizedBox(height: 2.h),
+        FloatingActionButton(
+          heroTag: 'floating3',
+          onPressed: () {
+            // Agregar Notas
+            Navigator.pushReplacementNamed(context, '/dashboard');
+          },
+          child: Icon(Icons.arrow_back),
         )
       ]),
       appBar: AppBar(

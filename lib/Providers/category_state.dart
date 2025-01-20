@@ -1,2 +1,0 @@
-
-// final selectedCategoryProvider = StateProvider<String>
