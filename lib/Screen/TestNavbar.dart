@@ -11,10 +11,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const Banner(
-        message: 'FlexZ',
-        location: BannerLocation.bottomStart,
-        child: FinalView(),
+      home: const Scaffold(
+        body: Center(
+          child: FinalView(),
+        ),
       ),
     );
   }

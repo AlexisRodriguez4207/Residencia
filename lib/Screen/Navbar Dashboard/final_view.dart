@@ -4,6 +4,7 @@ import 'package:residencia_v2/Screen/Navbar%20Dashboard/bottom_nav_btn.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/clipper.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/constants.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/size_config.dart';
+import 'package:sizer/sizer.dart';
 
 class FinalView extends StatefulWidget {
   const FinalView({super.key});
@@ -14,35 +15,74 @@ class FinalView extends StatefulWidget {
 
 class _FinalViewState extends State<FinalView> {
   int _currentIndex = 0;
+  late final PageController pageController;
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: _currentIndex);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  void animatetoPage(int page) {
+    pageController.animateToPage(page,
+        duration: const Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
   @override
   Widget build(BuildContext context) {
+    var colors = Theme.of(context).colorScheme;
+    var texts = Theme.of(context).textTheme;
     AppSizes().initSizes(context);
 
     return Scaffold(
-      backgroundColor: Colors.black12,
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
         title: Text(
-          'Barra de Nav',
-          style: TextStyle(color: Colors.white),
+          'Dashboard',
+          style: TextStyle(color: colors.primary),
         ),
         centerTitle: true,
       ),
       body: SafeArea(
           bottom: false,
-          child: Stack(
+          child: Column(
             children: [
-              Positioned.fill(
-                child: Container(
-                  color: Colors.deepPurpleAccent,
-                ),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       //Registro de usuario
+              //       Navigator.pushReplacementNamed(context, '/notes');
+              //     },
+              //     child: const Text('Notas')),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       //Registro de usuario
+              //       Navigator.pushReplacementNamed(context, '/maps');
+              //     },
+              //     child: const Text('Ubicación')),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       //Registro de usuario
+              //       Navigator.pushReplacementNamed(context, '/gamesMenu');
+              //     },
+              //     child: const Text('Juegos')),
+              SizedBox(
+                height: 49.h,
               ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                left: 0,
-                child: _buildBottomNavBar(),
-              )
+              _buildBottomNavBar()
+              // Positioned.fill(
+              //   child: Container(),
+              // ),
+              // Positioned(
+              //   bottom: 0,
+              //   right: 0,
+              //   left: 0,
+              //   child: _buildBottomNavBar(),
+              // )
             ],
           )),
     );
@@ -82,26 +122,36 @@ class _FinalViewState extends State<FinalView> {
                       currentIndex: _currentIndex,
                       index: 0,
                       onPressed: (val) {
+                        animatetoPage(val);
                         setState(() {
                           _currentIndex = val;
                         });
                       },
                     ),
-                    BottomNavBtn(
-                      icon: IconlyLight.search,
-                      currentIndex: _currentIndex,
-                      index: 1,
-                      onPressed: (val) {
-                        setState(() {
-                          _currentIndex = val;
-                        });
-                      },
-                    ),
+                    // IconButton(
+                    //     onPressed: () {
+                    //       Navigator.pushReplacementNamed(context, '/notes');
+                    //     },
+                    //     icon: Icon(Icons.error)),
+                    // BottomNavBtn(
+                    //   icon: IconlyLight.search,
+                    //   currentIndex: _currentIndex,
+                    //   index: 1,
+                    //   onPressed: (val) {
+                    //     animatetoPage(val);
+
+                    //     setState(() {
+                    //       _currentIndex = val;
+                    //     });
+                    //   },
+                    // ),
                     BottomNavBtn(
                       icon: IconlyLight.category,
                       currentIndex: _currentIndex,
                       index: 2,
                       onPressed: (val) {
+                        Navigator.pushReplacementNamed(context, '/notes');
+
                         setState(() {
                           _currentIndex = val;
                         });
@@ -112,6 +162,8 @@ class _FinalViewState extends State<FinalView> {
                       currentIndex: _currentIndex,
                       index: 3,
                       onPressed: (val) {
+                        animatetoPage(val);
+
                         setState(() {
                           _currentIndex = val;
                         });
@@ -122,6 +174,8 @@ class _FinalViewState extends State<FinalView> {
                       currentIndex: _currentIndex,
                       index: 4,
                       onPressed: (val) {
+                        animatetoPage(val);
+
                         setState(() {
                           _currentIndex = val;
                         });

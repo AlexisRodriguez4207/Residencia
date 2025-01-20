@@ -45,12 +45,12 @@ class BottomNavBtn extends StatelessWidget {
 
               //Main yellow Icon
               AnimatedOpacity(
-                opacity: (currentIndex == index) ? 1 : .02,
+                opacity: (currentIndex == index) ? 1 : 1,
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeIn,
                 child: Icon(
                   icon,
-                  color: Colors.yellow[300],
+                  color: Colors.white,
                   size: AppSizes.blockSizeHorizontal * 8,
                 ),
               ),

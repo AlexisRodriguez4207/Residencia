@@ -92,7 +92,7 @@ class _NotesState extends State<Notes> {
                         margin: EdgeInsets.only(bottom: 2.h),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: Colors.pinkAccent,
+                          color: const Color.fromARGB(255, 221, 128, 159),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
