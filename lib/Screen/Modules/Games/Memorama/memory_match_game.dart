@@ -9,7 +9,7 @@ class TheMemoryMatchGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const StartupPage(),
+      home: StartUpPage(),
       title: 'Juego de Memorama',
       // theme: ThemeData(
       //   appBarTheme: AppBarTheme(

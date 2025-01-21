@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
+import 'package:residencia_v2/Config/Services/theme_provider.dart';
+import 'package:residencia_v2/Config/Theme/theme.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/bottom_nav_btn.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/clipper.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/constants.dart';
@@ -20,12 +23,28 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final provider =
+        Provider.of<ThemeProvider>(context, listen: true).themeData;
+
     var colors = Theme.of(context).colorScheme;
     var texts = Theme.of(context).textTheme;
 
     AppSizes().initSizes(context);
 
     return Scaffold(
+      floatingActionButton:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        FloatingActionButton(
+          heroTag: 'floating1',
+          onPressed: () {
+            // Cambiar Tema
+            Provider.of<ThemeProvider>(context, listen: false).switchTheme();
+          },
+          child: Icon(
+              provider == lightTheme ? Icons.sunny : Icons.mode_night_rounded),
+        ),
+        SizedBox(height: 2.h),
+      ]),
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -125,7 +144,7 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                     BottomNavBtn(
-                      icon: IconlyLight.search,
+                      icon: IconlyLight.chat,
                       currentIndex: _currentIndex,
                       index: 1,
                       onPressed: (val) {
@@ -137,7 +156,7 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                     BottomNavBtn(
-                      icon: IconlyLight.category,
+                      icon: IconlyLight.search,
                       currentIndex: _currentIndex,
                       index: 2,
                       onPressed: (val) {
@@ -149,11 +168,11 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                     BottomNavBtn(
-                      icon: IconlyLight.setting,
+                      icon: IconlyLight.game,
                       currentIndex: _currentIndex,
                       index: 3,
                       onPressed: (val) {
-                        Navigator.pushReplacementNamed(context, '/games');
+                        Navigator.pushReplacementNamed(context, '/gamesMenu');
 
                         setState(() {
                           _currentIndex = val;
@@ -165,6 +184,7 @@ class _DashboardState extends State<Dashboard> {
                       currentIndex: _currentIndex,
                       index: 4,
                       onPressed: (val) {
+                        Navigator.pushReplacementNamed(context, '/profile');
                         setState(() {
                           _currentIndex = val;
                         });

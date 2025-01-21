@@ -46,7 +46,7 @@ class _GamesMenuState extends State<GamesMenu> {
                   ElevatedButton(
                       onPressed: () {
                         //Registro de usuario
-                        Navigator.pushReplacementNamed(context, '/notes');
+                        Navigator.pushReplacementNamed(context, '/sudoku');
                       },
                       child: const Text('Sudoku')),
                   ElevatedButton(

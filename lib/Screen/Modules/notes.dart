@@ -57,7 +57,7 @@ class _NotesState extends State<Notes> {
         FloatingActionButton(
           heroTag: 'floating3',
           onPressed: () {
-            // Agregar Notas
+            // Menu Principal
             Navigator.pushReplacementNamed(context, '/dashboard');
           },
           child: Icon(Icons.arrow_back),

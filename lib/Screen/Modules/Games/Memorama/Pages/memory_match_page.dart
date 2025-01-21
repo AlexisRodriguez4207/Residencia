@@ -2,43 +2,53 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:residencia_v2/Screen/Modules/Games/Memorama/Models/game.dart';
-import 'package:residencia_v2/Screen/Modules/Games/Memorama/game_timer.dart';
+import 'package:residencia_v2/Screen/Modules/Games/Memorama/widgets/game_timer.dart';
 import 'package:residencia_v2/Screen/Modules/Games/Memorama/widgets/memory_card.dart';
-import 'package:residencia_v2/Screen/Modules/Games/memorama.dart';
+import 'package:residencia_v2/Screen/Modules/Games/Memorama/widgets/restart_game.dart';
 
 class MemoryMatchPage extends StatefulWidget {
-  const MemoryMatchPage({super.key});
+  const MemoryMatchPage({super.key, required this.gameLevel});
+
+  final int gameLevel;
 
   @override
   State<MemoryMatchPage> createState() => _MemoryMatchPageState();
 }
 
 class _MemoryMatchPageState extends State<MemoryMatchPage> {
-  Timer? timer;
-  Game? game;
+  late Timer timer;
+  late Game game;
+  late Duration duration;
 
   @override
   void initState() {
     super.initState();
-    game = Game(4);
+    game = Game(widget.gameLevel);
+    duration = const Duration();
     startTimer();
   }
 
   startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (t) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {
-        game!.time = game!.time + 1;
+        final seconds = duration.inSeconds + 1;
+        duration = Duration(seconds: seconds);
       });
-      if (game!.isGameOver) {
-        timer!.cancel();
+      if (game.isGameOver) {
+        timer.cancel();
       }
     });
   }
 
+  pauserTimer() {
+    timer.cancel();
+  }
+
   void _resetGame() {
-    game!.resetGame();
+    game.resetGame();
     setState(() {
-      timer!.cancel();
+      timer.cancel();
+      duration = const Duration();
       startTimer();
     });
   }
@@ -61,34 +71,47 @@ class _MemoryMatchPageState extends State<MemoryMatchPage> {
           children: [
             Expanded(
               flex: 1,
-              child: GameTimer(time: game!.time),
+              child: GameTimer(
+                time: duration,
+              ),
             ),
             Expanded(
               flex: 3,
               child: GridView.count(
-                crossAxisCount: game!.gridSize,
-                children: List.generate(game!.cards.length, (index) {
+                crossAxisCount: game.gridSize,
+                children: List.generate(game.cards.length, (index) {
                   return MemoryCard(
-                    cardItem: game!.cards[index],
+                    card: game.cards[index],
                     index: index,
-                    onCardPressed: game!.onCardPressed,
+                    onCardPressed: game.onCardPressed,
                   );
                 }),
               ),
             ),
-            if (game!.isGameOver)
-              Expanded(
-                flex: 1,
-                child: GameButton(
-                  title: 'Intentar De Nuevo',
-                  onPressed: () => _resetGame(),
-                ),
-              )
-            else
-              const Expanded(
-                flex: 1,
-                child: SizedBox(),
-              )
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 48.0),
+              child: RestartGame(
+                isGameOver: game.isGameOver,
+                pauseGame: () => pauserTimer(),
+                restartGame: () => _resetGame(),
+                continueGame: () => startTimer(),
+                color: colors.primary,
+              ),
+            )
+
+            // if (game.isGameOver)
+            //   Expanded(
+            //     flex: 1,
+            //     child: GameButton(
+            //       title: 'Intentar De Nuevo',
+            //       onPressed: () => _resetGame(),
+            //     ),
+            //   )
+            // else
+            //   const Expanded(
+            //     flex: 1,
+            //     child: SizedBox(),
+            //   )
           ],
         ),
       ),
