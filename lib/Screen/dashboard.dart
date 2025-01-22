@@ -67,35 +67,57 @@ class _DashboardState extends State<Dashboard> {
               'Bienvenido a la pantalla de Dashboard',
               style: TextStyle(color: colors.primary),
             ),
-            // SizedBox(
-            //   child: Column(
-            //     children: [
-            //       ElevatedButton(
-            //           onPressed: () {
-            //             //Registro de usuario
-            //             Navigator.pushReplacementNamed(context, '/notes');
-            //           },
-            //           child: const Text('Notas')),
-            //       ElevatedButton(
-            //           onPressed: () {
-            //             //Registro de usuario
-            //             Navigator.pushReplacementNamed(context, '/maps');
-            //           },
-            //           child: const Text('Ubicación')),
-            //       ElevatedButton(
-            //           onPressed: () {
-            //             //Registro de usuario
-            //             Navigator.pushReplacementNamed(context, '/gamesMenu');
-            //           },
-            //           child: const Text('Juegos')),
-            //       SizedBox(
-            //         height: 46.h,
-            //       ),
-            //     ],
-            //   ),
-            // ),
             SizedBox(
-              height: 66.h,
+              height: 2.h,
+            ),
+            SizedBox(
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/LogoSmall.png",
+                    ),
+                  ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      const Color.fromARGB(255, 224, 219, 219),
+                      const Color.fromARGB(255, 162, 202, 235)
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Container(
+              width: 380,
+              height: 200,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    const Color.fromARGB(255, 224, 219, 219),
+                    const Color.fromARGB(255, 162, 202, 235)
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Text(
+                '"MindTech" \nbusca representar a una solución tecnologica de mejorar la calidad de vida del sector poblacional de adultos mayores al fomentar su independencia, reforzar la salud mental y ofrecer herramientas útiles para su organización diaria.',
+                style: TextStyle(color: Colors.black87, fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              padding: EdgeInsets.only(left: 15),
+            ),
+            SizedBox(
+              height: 6.h,
             ),
             _buildBottomNavBar()
           ],

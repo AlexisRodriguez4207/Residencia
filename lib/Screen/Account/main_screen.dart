@@ -92,11 +92,12 @@ class _ImageBoxSuperior extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       left: size.width * 0.1,
-      top: size.height * 0.1,
+      top: size.height * 0.15,
       right: size.width * 0.1,
       child: SizedBox(
-        height: size.height * 0.35,
+        height: size.height * 0.25,
         width: size.width * 0.8,
+        child: Image.asset('assets/Logo.png'),
       ),
     );
   }
