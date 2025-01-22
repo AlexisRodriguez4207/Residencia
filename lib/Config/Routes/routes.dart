@@ -5,6 +5,7 @@ import 'package:residencia_v2/Screen/Modules/Games/Memorama/memory_match_game.da
 import 'package:residencia_v2/Screen/Modules/Games/ahorcado.dart';
 import 'package:residencia_v2/Screen/Modules/Games/game_screen.dart';
 import 'package:residencia_v2/Screen/Modules/Perfil/profile.dart';
+import 'package:residencia_v2/Screen/Modules/infogames.dart';
 import 'package:residencia_v2/Screen/Modules/maps.dart';
 import 'package:residencia_v2/Screen/Modules/notes.dart';
 import 'package:residencia_v2/Screen/TestNavbar.dart';
@@ -20,6 +21,7 @@ final routes = {
   '/gamesMenu': (context) => const GamesMenu(),
   '/memorama': (context) => const TheMemoryMatchGame(),
   '/hang': (context) => const Hangman(),
+  '/info': (context) => const GamesInfo(),
   '/profile': (context) => UserProfile(),
   '/test': (context) => const App(),
 };

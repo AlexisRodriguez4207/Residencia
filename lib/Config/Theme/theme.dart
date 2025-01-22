@@ -31,7 +31,7 @@ ThemeData darkTheme = ThemeData(
     primary: const Color.fromARGB(255, 237, 236, 236),
     secondary: Colors.grey.shade700,
     tertiary: Colors.grey.shade600,
-    inversePrimary: Colors.grey.shade500,
+    inversePrimary: const Color.fromARGB(255, 0, 0, 0),
   ),
   textTheme: TextTheme(
     bodyMedium: TextStyle(fontSize: 16.sp, color: Colors.white70),

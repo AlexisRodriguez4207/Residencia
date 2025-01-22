@@ -10,14 +10,14 @@ import 'package:residencia_v2/Screen/Navbar%20Dashboard/constants.dart';
 import 'package:residencia_v2/Screen/Navbar%20Dashboard/size_config.dart';
 import 'package:sizer/sizer.dart';
 
-class GamesMenu extends StatefulWidget {
-  const GamesMenu({super.key});
+class GamesInfo extends StatefulWidget {
+  const GamesInfo({super.key});
 
   @override
-  State<GamesMenu> createState() => _GamesMenuState();
+  State<GamesInfo> createState() => _GamesInfoState();
 }
 
-class _GamesMenuState extends State<GamesMenu> {
+class _GamesInfoState extends State<GamesInfo> {
   int _currentIndex = 0;
   final _auth = FirebaseAuth.instance;
 
@@ -43,7 +43,10 @@ class _GamesMenuState extends State<GamesMenu> {
           child: Icon(
               provider == lightTheme ? Icons.sunny : Icons.mode_night_rounded),
         ),
+        SizedBox(height: 3.h),
         SizedBox(height: 2.h),
+
+        // SizedBox(height: 0.h),
       ]),
       appBar: AppBar(
         centerTitle: true,
@@ -65,65 +68,16 @@ class _GamesMenuState extends State<GamesMenu> {
           child: Column(
             children: [
               Text(
-                'Bienvenido a la pantalla de Minijuegos',
+                'Información Acerca de los Minijuegos',
                 style: TextStyle(color: colors.primary, fontSize: 20),
-              ),
-              SizedBox(
-                height: 1.h,
-              ),
-              Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/hangman.png",
-                    ),
-                  ),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      const Color.fromARGB(255, 224, 219, 219),
-                      const Color.fromARGB(255, 162, 202, 235)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 27.h,
-                    ),
-                    SizedBox(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow[800]),
-                        onPressed: () {
-                          //Registro de usuario
-                          Navigator.pushReplacementNamed(context, '/hang');
-                        },
-                        child: Text('Ahorcado',
-                            style: TextStyle(
-                              color: colors.primary,
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               SizedBox(
                 height: 2.h,
               ),
               Container(
-                width: 250,
-                height: 250,
+                width: 300,
+                height: 170,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/memorama.png",
-                    ),
-                  ),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -134,43 +88,45 @@ class _GamesMenuState extends State<GamesMenu> {
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 27.h,
-                    ),
-                    SizedBox(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.yellow[800]),
-                        onPressed: () {
-                          //Registro de usuario
-                          Navigator.pushReplacementNamed(context, '/memorama');
-                        },
-                        child: Text('Memorama',
-                            style: TextStyle(
-                              color: colors.primary,
-                            )),
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Ahorcado: \nJugar ahorcado desarrolla habilidades de lenguaje, atención, concentración y memoria. También ayuda a mejorar el vocabulario y la ortografía.',
+                  style: TextStyle(color: Colors.black87, fontSize: 18),
+                  textAlign: TextAlign.left,
                 ),
+                padding: EdgeInsets.only(left: 15),
               ),
               SizedBox(
-                height: 4.h,
+                height: 2.h,
               ),
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    //Registro de usuario
-                    Navigator.pushReplacementNamed(context, '/info');
-                  },
-                  child: Text('Información',
-                      style: TextStyle(color: colors.primary)),
+              Container(
+                width: 300,
+                height: 160,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      const Color.fromARGB(255, 224, 219, 219),
+                      const Color.fromARGB(255, 162, 202, 235)
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                child: Text(
+                  'Memorama: \nJugar al memorama desarrolla habilidades cognitivas, mejorar la memoria visual, la atención, la concentración y la coordinación visomotora.',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 18,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                padding: EdgeInsets.only(left: 15),
               ),
               SizedBox(
-                height: 6.h,
+                height: 1.h,
+              ),
+              SizedBox(
+                height: 10.h,
               ),
               _buildBottomNavBar()
             ],
