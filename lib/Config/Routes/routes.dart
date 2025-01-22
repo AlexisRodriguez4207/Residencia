@@ -2,7 +2,7 @@ import 'package:residencia_v2/Screen/Account/Main_Screen.dart';
 import 'package:residencia_v2/Screen/Account/login_screen.dart';
 import 'package:residencia_v2/Screen/Account/register_screen.dart';
 import 'package:residencia_v2/Screen/Modules/Games/Memorama/memory_match_game.dart';
-import 'package:residencia_v2/Screen/Modules/Games/Sudoku/sudoku.dart';
+import 'package:residencia_v2/Screen/Modules/Games/ahorcado.dart';
 import 'package:residencia_v2/Screen/Modules/Games/game_screen.dart';
 import 'package:residencia_v2/Screen/Modules/Perfil/profile.dart';
 import 'package:residencia_v2/Screen/Modules/maps.dart';
@@ -19,7 +19,7 @@ final routes = {
   '/maps': (context) => const MapScreen(),
   '/gamesMenu': (context) => const GamesMenu(),
   '/memorama': (context) => const TheMemoryMatchGame(),
-  '/sudoku': (context) => SudokuPage(),
+  '/hang': (context) => const Hangman(),
   '/profile': (context) => UserProfile(),
   '/test': (context) => const App(),
 };

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           navigatorObservers: [FlutterSmartDialog.observer],
           builder: FlutterSmartDialog.init(),
           theme: Provider.of<ThemeProvider>(context).themeData,
-          initialRoute: '/dashboard',
+          initialRoute: '/gamesMenu',
           routes: routes,
         );
       },

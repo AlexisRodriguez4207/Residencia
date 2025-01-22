@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class GamesMenu extends StatefulWidget {
   const GamesMenu({super.key});
@@ -45,10 +43,10 @@ class _GamesMenuState extends State<GamesMenu> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        //Registro de usuario
-                        Navigator.pushReplacementNamed(context, '/sudoku');
+                        //Ahorcado
+                        Navigator.pushReplacementNamed(context, '/hang');
                       },
-                      child: const Text('Sudoku')),
+                      child: const Text('Ahorcado')),
                   ElevatedButton(
                       onPressed: () {
                         //Registro de usuario
